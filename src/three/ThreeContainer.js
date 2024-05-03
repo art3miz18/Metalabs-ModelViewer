@@ -8,7 +8,8 @@ const ThreeContainer = ({ modelUrl1 }) => {
     const mountRef = useRef(null);
     const [threeObjects, setThreeObjects] = useState({ scene: null, camera: null, renderer: null, controls: null });
     const [initialized, setInitialized] = useState(false);
-    const modelUrl ="https://meta-3d-new.s3.ap-south-1.amazonaws.com/3dModel.glb";
+    // const modelUrl ="https://meta-3d-new.s3.ap-south-1.amazonaws.com/3dModel.glb";
+    const modelUrl ="http://192.168.0.124:3001/uploads/modelFile-1711522835230-619341671.glb";
     
     useEffect(() => {
         
