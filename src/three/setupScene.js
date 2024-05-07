@@ -13,9 +13,7 @@ export const setupScene = () => {
   const renderer = new THREE.WebGLRenderer({ antialias: true });  
   renderer.domElement.style.position = 'absolute';
   renderer.domElement.style.zIndex = "1";
-  renderer.setSize(window.innerWidth, window.innerHeight);  
-  
-
+  renderer.setSize(window.innerWidth, window.innerHeight);
   controls = new OrbitControls( camera, renderer.domElement );
   setupLights(scene);
  
