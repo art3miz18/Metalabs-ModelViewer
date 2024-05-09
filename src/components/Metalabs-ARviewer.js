@@ -1,13 +1,8 @@
-import React,{useState, useRef} from "react";
-import ThreeContainer from "../three/ThreeContainer";
 import ARViewer from "./ARviewer";
 
-const MetalabsARviewer= (modelPath) =>{
-    const [arSupported, setArSupported] = useState(null);
-    const modelViewerRef = useRef(null);
-
+const MetalabsARviewer= (modelPath) =>{ 
     
-    return  <ARViewer src={modelPath}/>    
+    return  <ARViewer src={modelPath} />    
 };  
 
 export default MetalabsARviewer

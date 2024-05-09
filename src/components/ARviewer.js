@@ -1,68 +1,81 @@
 import React, { useState,useRef, useEffect } from 'react';
-import ThreeContainer from "../three/ThreeContainer";
 import QRCode from 'qrcode.react';
-// import '@google/model-viewer';
 
 const ARViewer = ({ src }) => {
   const modelViewerRef = useRef(null);
-    const [Arsupported,setARsupported]= useState(false);
-    
-    
-
+    const [Arsupported,setARsupported]= useState(null);    
+    const [showQRPopup, setShowQRPopup] = useState(false);
   useEffect(() => {
-    const modelViewer = modelViewerRef.current;    
-
-    if(!modelViewer) {
-      return;
-    }
-
-    const initAR = async () => {
-      console.log('src', src.modelPath);
-      if(await modelViewer.canActivateAR) {
-        console.log('Activating AR');
-        modelViewer.activateAR();
-        setARsupported(modelViewer.canActivateAR);
-      }
-      else {
-        console.log('AR not supported on device');
-        setARsupported(false);
-      }
-      return () => {
-          if (modelViewerRef.current && modelViewerRef.current.parentNode && !Arsupported) {
-              // Ensure the element is still in the DOM
-              document.body.removeChild(modelViewerRef.current);
-              modelViewerRef.current = null; // Clear the ref
-              console.log('removing modelViewer Ref');
+    const modelViewer = modelViewerRef.current;
+    if(modelViewer) {
+      
+        const initAR = async () => {
+          if(await modelViewer.canActivateAR) {
+            modelViewer.activateAR();
+            setARsupported(modelViewer.canActivateAR);
           }
           else {
-            console.log('not yet received modelViewer Ref');
+            setARsupported(false);
           }
-      };
-    };
+        };
+        initAR()
+    } 
+  }, [Arsupported]);
 
-    initAR()
-
-    // setARsupported(checkARSupport());
-  }, [src]);
-
+  const handleARButtonClick = () => {
+    if (modelViewerRef.current) {
+      modelViewerRef.current.activateAR();
+    }
+  };
+  
   return (
     <>
       {Arsupported === null && <div>Checking for AR support...</div>}
       {Arsupported ? 
-      (<div>AR is supported on your device. Opening AR module</div>) : 
-      (
-        <div style= {{position :'relative'}}>
-          <div>AR not supported on your device. Scan this QR code:</div>
-          <QRCode value={window.location.href} size={512} level={"H"} includeMargin={true} />
-          <ThreeContainer modelUrl={src.modelPath} />
-        </div>
+      (<>
+        <button onClick={handleARButtonClick}
+         style={{
+          position: 'absolute',
+          right: '20px',
+          bottom: '20px',
+          zIndex: 10,
+          padding: '10px 20px',
+          backgroundColor: '#fff',
+          border: 'none',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
+        }}>Open AR Viewer</button>
+      </>) : 
+      (<>
+        <button onClick={() => setShowQRPopup(true)}
+         style={{
+          position: 'absolute',
+          right: '20px',
+          bottom: '20px',
+          zIndex: 10,
+          padding: '10px 20px',
+          backgroundColor: '#fff',
+          border: 'none',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
+        }}>Show QR Code</button>
+        {showQRPopup && (
+            <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10, background: 'white', padding: '20px', borderRadius: '10px' }}>
+              <div>AR not supported on your device. Scan this QR code:</div>
+              <QRCode value={window.location.href} size={256} level={"H"} includeMargin={true} />
+              <button onClick={() => setShowQRPopup(false)}>Close</button>
+            </div>
+          )}
+      </>        
       )}
       <model-viewer
         ref={modelViewerRef}
         src={src.modelPath}
         ar
         ar-modes="webxr scene-viewer quick-look"
-        style={{  width: '100%', height: '100%', display: 'block'}}
+        style={{  width: '100vw', height: '100vh', display: Arsupported ? 'block': 'block'}}
         camera-controls
         auto-rotate
       ></model-viewer>
