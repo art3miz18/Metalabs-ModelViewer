@@ -8,8 +8,7 @@ const ThreeContainer = ({ modelUrl }) => {
     const mountRef = useRef(null);
     const [threeObjects, setThreeObjects] = useState({ scene: null, camera: null, renderer: null, controls: null });
     const [initialized, setInitialized] = useState(false);
-    // const modelUrl ="https://meta-3d-new.s3.ap-south-1.amazonaws.com/3dModel.glb";
-    // const modelUrl ="https://meta-3d-new.s3.ap-south-1.amazonaws.com/3dModel.glb";
+    
     
     useEffect(() => {
         if(modelUrl){
@@ -22,7 +21,7 @@ const ThreeContainer = ({ modelUrl }) => {
             if (modelUrl) {    
                 loadModel(scene, modelUrl, camera,  controls, (onModelLoaded)=>{
                     
-                    console.log('model loaded!', onModelLoaded);            
+                    // console.log('model loaded!', onModelLoaded);            
                                                               });
                             }
             setInitialized(true);
