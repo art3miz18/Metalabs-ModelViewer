@@ -78,7 +78,9 @@ const ARViewer = ({ src }) => {
         style={{  width: '100vw', height: '100vh', display: Arsupported ? 'block': 'block'}}
         camera-controls
         auto-rotate
-      ></model-viewer>
+      >       
+
+      </model-viewer>
     </>
   );
 };
