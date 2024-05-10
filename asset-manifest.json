@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Metalabs-ModelViewer/static/css/main.3004dbc5.css",
+    "main.css": "/Metalabs-ModelViewer/static/css/main.b36b3be3.css",
     "main.js": "/Metalabs-ModelViewer/static/js/main.d45166f0.js",
     "static/js/453.19692e8a.chunk.js": "/Metalabs-ModelViewer/static/js/453.19692e8a.chunk.js",
     "index.html": "/Metalabs-ModelViewer/index.html",
-    "main.3004dbc5.css.map": "/Metalabs-ModelViewer/static/css/main.3004dbc5.css.map",
+    "main.b36b3be3.css.map": "/Metalabs-ModelViewer/static/css/main.b36b3be3.css.map",
     "main.d45166f0.js.map": "/Metalabs-ModelViewer/static/js/main.d45166f0.js.map",
     "453.19692e8a.chunk.js.map": "/Metalabs-ModelViewer/static/js/453.19692e8a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3004dbc5.css",
+    "static/css/main.b36b3be3.css",
     "static/js/main.d45166f0.js"
   ]
 }
