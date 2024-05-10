@@ -1,0 +1,38 @@
+.image-slider button {
+    flex: 0 0 auto; /* Do not grow or shrink */
+    margin: 5px;
+    background-size: cover;
+    border: none; /* Removes default button styling */
+    scroll-snap-align: start; /* Optional: Aligns elements to the snap points */
+    border-radius: 10px;
+  }
+  
+  .image-slider{
+    display: flex;
+    position: absolute;
+    bottom: 20px;
+    align-items: center;
+    place-content: center;
+    overflow-x: auto; /* Enables horizontal scrolling */
+    scroll-snap-type: x mandatory; /* Optional: Enhances the scrolling experience */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS devices */
+    width: 100vw;
+  }
+  
+  .image-slider button:hover {
+    transform: scale(1.1);
+  }
+  
+  @media (max-width: 768px) {
+    .image-slider button {
+      width: 25px;
+      height: 25px;
+    }
+  }
+  @media (max-width: 1920px) {
+    .image-slider button {
+      width: 75px;
+      height: 75px;
+    }
+  }
+  

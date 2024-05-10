@@ -3,15 +3,17 @@ import QRCode from 'qrcode.react';
 
 const ARViewer = ({ src }) => {
   const modelViewerRef = useRef(null);
-    const [Arsupported,setARsupported]= useState(null);    
-    const [showQRPopup, setShowQRPopup] = useState(false);
+  const [Arsupported,setARsupported]= useState(null);    
+  const [showQRPopup, setShowQRPopup] = useState(false);
+
+
   useEffect(() => {
     const modelViewer = modelViewerRef.current;
     if(modelViewer) {
-      
+        console.log('source url', src);
         const initAR = async () => {
           if(await modelViewer.canActivateAR) {
-            modelViewer.activateAR();
+            // modelViewer.activateAR();   //automatically Turn on AR view
             setARsupported(modelViewer.canActivateAR);
           }
           else {
@@ -20,13 +22,15 @@ const ARViewer = ({ src }) => {
         };
         initAR()
     } 
-  }, [Arsupported]);
+  }, [src, Arsupported]);
 
   const handleARButtonClick = () => {
     if (modelViewerRef.current) {
       modelViewerRef.current.activateAR();
     }
   };
+
+  
   
   return (
     <>
@@ -37,7 +41,7 @@ const ARViewer = ({ src }) => {
          style={{
           position: 'absolute',
           right: '20px',
-          bottom: '20px',
+          bottom: '120px',
           zIndex: 10,
           padding: '10px 20px',
           backgroundColor: '#fff',
@@ -52,7 +56,7 @@ const ARViewer = ({ src }) => {
          style={{
           position: 'absolute',
           right: '20px',
-          bottom: '20px',
+          bottom: '120px',
           zIndex: 10,
           padding: '10px 20px',
           backgroundColor: '#fff',
@@ -72,14 +76,15 @@ const ARViewer = ({ src }) => {
       )}
       <model-viewer
         ref={modelViewerRef}
-        src={src.modelPath}
+        src={src}
         ar
         ar-modes="webxr scene-viewer quick-look"
+        shadow-intensity ="2"
         style={{  width: '100vw', height: '100vh', display: Arsupported ? 'block': 'block'}}
         camera-controls
-        auto-rotate
+        auto-rotate        
       >       
-
+      <button slot="ar-button" style={{display:'none'}}></button>
       </model-viewer>
     </>
   );
