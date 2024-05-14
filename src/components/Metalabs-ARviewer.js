@@ -4,7 +4,7 @@ import ARViewer from "./ARviewer";
 import ImageSlider from "./ImageSlider";
 
 const MetalabsARviewer= (modelURL) =>{    
-    
+    const [s3URL, setS3url] = useState(null);
     const imageItems = [
         {
             imgSrc: 'https://metainvincible.s3.amazonaws.com/meta/AR-cars/demo/Webgl/1715239619059/tataPunch.png',

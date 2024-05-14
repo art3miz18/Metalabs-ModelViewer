@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import '../css/imageSlider.css'
 
 const ImageSlider = ({ images, onImageSelect }) => {
-  // State to track the selected image URL
   const [selectedImage, setSelectedImage] = useState(images.length > 0 ? images[0] : null);
 
-  // Handle clicking an image button
   const handleItemClick = (url) => {
     setSelectedImage(url);
     onImageSelect(url);

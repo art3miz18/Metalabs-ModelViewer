@@ -22,7 +22,7 @@ const ARViewer = ({ src }) => {
         };
         initAR()
     } 
-  }, [src, Arsupported]);
+  }, [src]);
 
   const handleARButtonClick = () => {
     if (modelViewerRef.current) {
