@@ -3,7 +3,7 @@ import ARViewer from "./ARviewer";
 import { generatePresignedUrlGET } from "../services/preSignedUrl";
 // import ImageSlider from "./ImageSlider";
 
-const MetalabsARviewer = ({ modelURL, clientId, secretKey, s3ObjectKey }) => {
+const MetalabsARviewer = ({  clientId, secretKey, s3ObjectKey }) => {
   const [s3URL, setS3url] = useState(null);
   const metaBucket = process.env.REACT_APP_META_BUCKET_NAME;
   const getS3URL = async (s3ObjectKey) => {
@@ -17,14 +17,12 @@ const MetalabsARviewer = ({ modelURL, clientId, secretKey, s3ObjectKey }) => {
   };
   useEffect(() => {
     getS3URL(s3ObjectKey);
+    // console.log('src',src);
   }, []);
   return (
     <div>
       <ARViewer
-        src={modelURL}
-        clientId={clientId}
-        secretKey={secretKey}
-        s3ObjectKey={s3ObjectKey}
+        src={s3URL}
       />
     </div>
   );

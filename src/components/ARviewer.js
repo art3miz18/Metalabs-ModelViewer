@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import QRCode from "qrcode.react";
 
-const ARViewer = ({ src, clientId, secretKey, s3ObjectKey }) => {
+const ARViewer = ({ src}) => {
   const modelViewerRef = useRef(null);
   const [Arsupported, setARsupported] = useState(null);
   const [showQRPopup, setShowQRPopup] = useState(false);
