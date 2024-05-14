@@ -1,7 +1,7 @@
 import React, { useState,useRef, useEffect } from 'react';
 import QRCode from 'qrcode.react';
 
-const ARViewer = ({ src }) => {
+const ARViewer = ({ src, clientId, secretKey, s3Url }) => {
   const modelViewerRef = useRef(null);
   const [Arsupported,setARsupported]= useState(null);    
   const [showQRPopup, setShowQRPopup] = useState(false);
@@ -13,7 +13,7 @@ const ARViewer = ({ src }) => {
         console.log('source url', src);
         const initAR = async () => {
           if(await modelViewer.canActivateAR) {
-            // modelViewer.activateAR();   //automatically Turn on AR view
+            modelViewer.activateAR();   //automatically Turn on AR view
             setARsupported(modelViewer.canActivateAR);
           }
           else {
@@ -76,7 +76,7 @@ const ARViewer = ({ src }) => {
       )}
       <model-viewer
         ref={modelViewerRef}
-        src={src}
+        src={src.src}
         ar
         ar-modes="webxr scene-viewer quick-look"
         shadow-intensity ="2"
