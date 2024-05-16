@@ -1,29 +1,26 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import ARViewer from "./ARviewer";
-import { generatePresignedUrlGET } from "../services/preSignedUrl";
+import ARService from "../services/AR.service";
 // import ImageSlider from "./ImageSlider";
 
-const MetalabsARviewer = ({  clientId, secretKey, s3ObjectKey }) => {
+const MetalabsARviewer = ({ hostKey, modelID }) => {
   const [s3URL, setS3url] = useState(null);
-  const metaBucket = process.env.REACT_APP_META_BUCKET_NAME;
-  const getS3URL = async (s3ObjectKey) => {
+  const fetchARModels = async () => {
     try {
-      if (!s3ObjectKey) throw new Error("S3 Object Key missing!");
-      const data = await generatePresignedUrlGET(metaBucket, s3ObjectKey);
+      const data = await ARService.getModel();
       setS3url(data);
+      // console.log(data);
     } catch (err) {
       console.error(err);
     }
   };
   useEffect(() => {
-    getS3URL(s3ObjectKey);
+    fetchARModels();
     // console.log('src',src);
   }, []);
   return (
     <div>
-      <ARViewer
-        src={s3URL}
-      />
+      <ARViewer src={s3URL} />
     </div>
   );
 };
