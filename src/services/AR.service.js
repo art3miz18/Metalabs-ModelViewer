@@ -3,7 +3,7 @@ const ARService = {
   getModel: async (hostKey, modelId) => {
     try {
       const response = await axios.get(
-        `https://dev.api.invinciblemeta.ai/ar/model?hostKey=${hostKey}&modelId=${modelId}`
+        `https://dev.api.invinciblemeta.ai/ar/model/package?hostKey=${hostKey}&modelId=${modelId}`
       );
       return response?.data?.data;
     } catch (error) {

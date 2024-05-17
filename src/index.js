@@ -6,6 +6,6 @@ import MetalabsARviewer from "./components/Metalabs-ARviewer";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<MetalabsARviewer hostKey={"hostKey"} modelID={"modelID"} />);
+root.render(<MetalabsARviewer hostKey={null} modelID={null} />);
 
 reportWebVitals();
