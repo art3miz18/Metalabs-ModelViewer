@@ -7,7 +7,7 @@ const MetalabsARviewer = ({ hostKey, modelID }) => {
   const [s3URL, setS3url] = useState(null);
   const fetchARModels = async () => {
     try {
-      const data = await ARService.getModel();
+      const data = await ARService.getModel(hostKey, modelID);
       setS3url(data);
       // console.log(data);
     } catch (err) {

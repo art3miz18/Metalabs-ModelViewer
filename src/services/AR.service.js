@@ -1,9 +1,9 @@
 import axios from "axios";
 const ARService = {
-  getModel: async () => {
+  getModel: async (hostKey, modelId) => {
     try {
       const response = await axios.get(
-        `https://dev.api.invinciblemeta.ai/ar/model`
+        `https://dev.api.invinciblemeta.ai/ar/model?hostKey=${hostKey}&modelId=${modelId}`
       );
       return response?.data?.data;
     } catch (error) {
